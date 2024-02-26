@@ -1,10 +1,22 @@
-import React from 'react'
+import { React } from 'react'
+import TodoRow from './TodoRow'
 
-const Table = () => {
+const Table = ({ name, message }) => {
+  const items = [
+    {body: 'item_1_updated'},
+    {body: 'item_2_updated'}
+  ];
+
   return (
-    <div>
-      Table
-    </div>
+    <table>
+      {
+        items.map((item, index)=>(
+          <tr>
+            <TodoRow body={item.body} index={index} />
+          </tr>
+        ))
+      }
+    </table>
   )
 }
 
