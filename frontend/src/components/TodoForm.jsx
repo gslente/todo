@@ -2,9 +2,11 @@ import React from 'react'
 
 const TodoForm = () => {
   return (
-    <div>
-      TodoForm
-    </div>
+    <>
+      <form action='/' method='POST'>
+
+      </form>
+    </>
   )
 }
 
