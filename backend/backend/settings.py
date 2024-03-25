@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 
     # EXTERNAL
     'rest_framework',
+    'rest_framework_swagger',
+    'drf_yasg',
     'corsheaders',
 
     # INTERNAL
