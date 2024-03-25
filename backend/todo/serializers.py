@@ -1,8 +1,11 @@
 from rest_framework import serializers
-from . import models
+from rest_framework.parsers import JSONParser
+
+# INTERNAL
+from todo.models import Todo
 
 # Create your serializers here.
 class TodoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.Todo
+        model = Todo
         fields = '__all__'
