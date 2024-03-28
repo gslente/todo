@@ -1,12 +1,35 @@
-import React from 'react'
+import { React, useState } from 'react'
+import axios from 'axios'
 
-const TodoForm = () => {
+const URL = 'http://localhost:8001/api/todo/'
+
+const TodoForm = ({ get_todo_list }) => {
+  const [todo, set_todo] = useState({
+    title: '',
+    body: ''
+  })
+
+  const text_onChange = (e) => {
+    set_todo({
+      ...todo,
+      title: e.target.value,
+      body: e.target.value
+    })
+  }
+
+  const add_todo = async () => {
+    await axios.post(URL, todo)
+      .then(response => {
+        get_todo_list()
+      })
+      .catch(error => { console.log(error) }
+      )
+  }
+
   return (
     <>
-      <form action='/' method='POST'>
-        <input type="text" id="name" name="name" required minlength="4" maxlength="8" size="10" />
-        <input type="submit" value="Submit" />
-      </form>
+      <input type="text" id="name" placeholder='Add new To Do item' onChange={text_onChange} value={todo.body} />
+      <input type="submit" value="Submit" onClick={add_todo} />
     </>
   )
 }

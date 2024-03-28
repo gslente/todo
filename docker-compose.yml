@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+  backend:
+    container_name: todo_backend
+    build:
+      context: ./backend
+    command: python manage.py runserver 0.0.0.0:8000
+    restart: always
+    volumes:
+      - ./backend:/usr/src/app
+    ports:
+      - 8001:8000
+    environment:
+      - DEBUG=0
+      - SECRET_KEY=)!i^ht+=37%x*u249jd(585er6@5j-wvg!zk975m5qqy@j9sjd
+      - ALLOWED_HOSTS=localhost,127.0.0.1
+  #frontend:
+  #  container_name: todo_frontend
+  #  build:
+  #    context: ./frontend
+  #  command: npm start
+  #  restart: always
+  #  volumes:
+  #    - ./frontend:/usr/src/app
+  #  ports:
+  #    - 8002:8000
