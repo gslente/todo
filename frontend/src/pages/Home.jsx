@@ -7,7 +7,7 @@ import Header from '../components/Header'
 import Table from '../components/Table'
 import TodoForm from '../components/TodoForm'
 
-const URL = 'http://127.0.0.1:8000/api/todo/'
+const URL = 'http://localhost:8001/api/todo/'
 
 const Home = () => {
   const [todo_list, set_todo_list] = useState([])

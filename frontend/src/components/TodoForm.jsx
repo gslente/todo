@@ -1,7 +1,7 @@
 import { React, useState } from 'react'
 import axios from 'axios'
 
-const URL = 'http://127.0.0.1:8000/api/todo/'
+const URL = 'http://localhost:8001/api/todo/'
 
 const TodoForm = ({ get_todo_list }) => {
   const [todo, set_todo] = useState({
@@ -22,7 +22,8 @@ const TodoForm = ({ get_todo_list }) => {
       .then(response => {
         get_todo_list()
       })
-      .catch(error => { console.log(error) })
+      .catch(error => { console.log(error) }
+      )
   }
 
   return (

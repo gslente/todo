@@ -2,7 +2,7 @@ import { React, useEffect } from 'react'
 import useState from 'react-usestateref'
 import axios from 'axios'
 
-var URL = 'http://127.0.0.1:8000/api/todo/'
+var URL = 'http://localhost:8001/api/todo/'
 
 const TodoRow = ({ item, get_todo_list }) => {
   const [todo, set_todo, todo_ref] = useState({
