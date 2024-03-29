@@ -5,23 +5,35 @@ services:
     container_name: todo_backend
     build:
       context: ./backend
-    command: python manage.py runserver 0.0.0.0:8000
+    command: gunicorn backend.wsgi --bind 0.0.0.0.8000
     restart: always
     volumes:
-      - ./backend:/usr/src/app
+      - ./backend:/usr/src/app/backend
     ports:
-      - 8001:8000
+      - 8000:8000
     environment:
       - DEBUG=0
       - SECRET_KEY=)!i^ht+=37%x*u249jd(585er6@5j-wvg!zk975m5qqy@j9sjd
       - ALLOWED_HOSTS=localhost,127.0.0.1
-  #frontend:
-  #  container_name: todo_frontend
-  #  build:
-  #    context: ./frontend
-  #  command: npm start
-  #  restart: always
-  #  volumes:
-  #    - ./frontend:/usr/src/app
-  #  ports:
-  #    - 8002:8000
+  frontend:
+    container_name: todo_frontend
+    build:
+      context: ./frontend
+    #command: npm start
+    restart: always
+    volumes:
+      - ./frontend:/usr/src/app/frontend
+      - run_build:/usr/src/app/frontend/dist
+  nginx:
+    container_name: todo_nginx
+    image: nginx:latest
+    ports:
+      - 80:8080
+    volumes:
+      - ./nginx/nginx-setup.conf:/etc/nginx/conf.d/default.conf:ro
+      - run_build:/var/www/frontend
+    depends_on:
+      - backend
+      - frontend
+volumes:
+  run_build:
