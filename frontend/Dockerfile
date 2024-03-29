@@ -1,5 +1,11 @@
 FROM node:latest
 
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app/frontend
 
-COPY . /usr/src/app/
+COPY . .
+
+RUN npm install
+
+RUN npm run build
+
+#ENTRYPOINT [ "/usr/src/app/frontend/entrypoint.sh" ]
